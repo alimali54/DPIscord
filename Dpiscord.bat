@@ -18,16 +18,16 @@ set "VBS_NAME=opendiscord.vbs"
 cls
 echo [1] DNS Zehirlenmesi Kontrol Ediliyor...
 
-:: En başta değişkenleri sıfırla/tanımsız yapma, "BULUNAMADI" ata
+:: En baÃ¾ta deÃ°iÃ¾kenleri sÃ½fÃ½rla/tanÃ½msÃ½z yapma, "BULUNAMADI" ata
 set "LOCAL_IP=YEREL_IP_YOK"
-set "SAFE_IP=GÜVENLİ_IP_YOK"
+set "SAFE_IP=GÃœVENLÃ_IP_YOK"
 
 :: 1. Yerel DNS (IPv4 Sabitlendi)
-:: Çıktıyı satır satır tara, içinde nokta (.) olan her şeyi kontrol et
+:: Ã‡Ã½ktÃ½yÃ½ satÃ½r satÃ½r tara, iÃ§inde nokta (.) olan her Ã¾eyi kontrol et
 for /f "usebackq tokens=*" %%a in (`nslookup updates.discord.com 2^>nul`) do (
     echo %%a | findstr /v "#" | findstr "\." >nul
     if !errorlevel! equ 0 (
-        :: Satırın içindeki IP'yi cımbızla çek (Address: kısmını atla)
+        :: SatÃ½rÃ½n iÃ§indeki IP'yi cÃ½mbÃ½zla Ã§ek (Address: kÃ½smÃ½nÃ½ atla)
         for %%b in (%%a) do (
             echo %%b | findstr /r "[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*" >nul
             if !errorlevel! equ 0 set "LOCAL_IP=%%b"
@@ -35,7 +35,7 @@ for /f "usebackq tokens=*" %%a in (`nslookup updates.discord.com 2^>nul`) do (
     )
 )
 
-:: 2. Cloudflare DoH (Gerçek IP Ayıklama)
+:: 2. Cloudflare DoH (GerÃ§ek IP AyÃ½klama)
 for /f "tokens=*" %%g in ('curl -s -H "accept: application/dns-json" "https://1.1.1.1/dns-query?name=updates.discord.com&type=A"') do (
     set "JSON_OUT=%%g"
     for %%h in (!JSON_OUT!) do (
@@ -57,33 +57,33 @@ for /f "tokens=*" %%g in ('curl -s -H "accept: application/dns-json" "https://1.
 :PRINT_IPS
 echo.
 echo ------------------------------------------
-:: ":" işaretlerini aynı sütuna hizaladık
+:: ":" iÃ¾aretlerini aynÃ½ sÃ¼tuna hizaladÃ½k
 echo Yerel Sorgu (ISS)   : %LOCAL_IP%
-echo Güvenli Sorgu (DoH) : %SAFE_IP%
+echo GÃ¼venli Sorgu (DoH) : %SAFE_IP%
 echo ------------------------------------------
 echo.
 
-:: Eğer ikisi de bulunamadıysa uyarı ver
+:: EÃ°er ikisi de bulunamadÃ½ysa uyarÃ½ ver
 if "%LOCAL_IP%"=="YEREL_IP_YOK" (
-    echo [!] HATA: Yerel IP adresi tespit edilemedi. Internet bağlantınızı kontrol edin.
+    echo [!] HATA: Yerel IP adresi tespit edilemedi. Internet baÃ°lantÃ½nÃ½zÃ½ kontrol edin.
     pause & goto :DNS_KONTROL
 )
 
-:: Karşılaştırma
+:: KarÃ¾Ã½laÃ¾tÃ½rma
 set "LOCAL_COMP=%LOCAL_IP:~0,5%"
 set "SAFE_COMP=%SAFE_IP:~0,5%"
 
 if "%LOCAL_COMP%" neq "%SAFE_COMP%" (
     setlocal DisableDelayedExpansion
     echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    echo HATA: DNS Zehirlenmesi Saptandı! ^(ISS Mudahalesi Var^)
+    echo HATA: DNS Zehirlenmesi SaptandÃ½! ^(ISS Mudahalesi Var^)
     echo/
-    echo Servis sağlayıcınız DNS isteklerinize müdahale ediyor.
-    echo Lütfen YogaDNS veya benzeri bir DoH istemcisi kullanın.
+    echo Servis saÃ°layÃ½cÃ½nÃ½z DNS isteklerinize mÃ¼dahale ediyor.
+    echo LÃ¼tfen YogaDNS veya benzeri bir DoH istemcisi kullanÃ½n.
     echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     echo/
     endlocal
-    echo Tekrar kontrol etmek için ENTER'a basın...
+    echo Tekrar kontrol etmek iÃ§in ENTER'a basÃ½n...
     pause >nul
     goto :DNS_KONTROL
 )
@@ -92,13 +92,13 @@ if "%LOCAL_COMP%" neq "%SAFE_COMP%" (
 
 echo [+] DURUM: DNS Temiz.
 echo.
-echo [2] ByeDPI stratejisi bulup Masaüstü kısayolu oluşturmak için ENTER'a basın.
+echo [2] ByeDPI stratejisi bulup MasaÃ¼stÃ¼ kÃ½sayolu oluÃ¾turmak iÃ§in ENTER'a basÃ½n.
 pause >nul
 
 :STRATEJI_DENE
 echo.
 if not exist "%STRATEGY_FILE%" (
-    echo HATA: %STRATEGY_FILE% bulunamadı!
+    echo HATA: %STRATEGY_FILE% bulunamadÃ½!
     pause
     exit
 )
@@ -119,30 +119,30 @@ for /f "usebackq tokens=*" %%s in ("%STRATEGY_FILE%") do (
     
     taskkill /f /im ciadpi.exe >nul 2>&1
     
-    :: Programı başlatırken parametreleri tırnaksız ama güvenli geçiyoruz
+    :: ProgramÃ½ baÃ¾latÃ½rken parametreleri tÃ½rnaksÃ½z ama gÃ¼venli geÃ§iyoruz
     start /b "" "%CIADPI_EXE%" !STRAT! -p %PORT%
     
-    :: Test süresi (timeout bazen parantez hatası verebilir, alternatif uyku)
+    :: Test sÃ¼resi (timeout bazen parantez hatasÃ½ verebilir, alternatif uyku)
     ping 127.0.0.1 -n 4 >nul
     
     curl -I --socks5-hostname 127.0.0.1:%PORT% %TEST_URL% --connect-timeout 4 >nul 2>&1
     if !errorlevel! equ 0 (
         echo.
-        echo [+] ÇALIŞAN STRATEJI BULUNDU (!CURRENT_INDEX!/%TOTAL_STRATS%^): !STRAT!
+        echo [+] Ã‡ALIÃAN STRATEJI BULUNDU (!CURRENT_INDEX!/%TOTAL_STRATS%^): !STRAT!
         set "BEST_STRAT=!STRAT!"
         goto BASARILI
     )
 )
 
 echo.
-echo HATA: Hiçbir strateji çalışmadı!
+echo HATA: HiÃ§bir strateji Ã§alÃ½Ã¾madÃ½!
 pause
 exit
 
 :BASARILI
 taskkill /f /im ciadpi.exe >nul 2>&1
 
-:: --- VBS LAUNCHER OLUŞTUR ---
+:: --- VBS LAUNCHER OLUÃTUR ---
 set "VBS_PATH=%~dp0proxychains\%VBS_NAME%"
 set "FULL_CIADPI_PATH=%~dp0%CIADPI_EXE%"
 
@@ -203,21 +203,21 @@ echo    Loop
 echo End Function
 ) > "%VBS_PATH%"
 
-:: --- MASAÜSTÜ KISAYOL (Yeni VBS Yoluna Göre) ---
+:: --- MASAÃœSTÃœ KISAYOL (Yeni VBS Yoluna GÃ¶re) ---
 set "SC_PATH=%USERPROFILE%\Desktop\Discord (DPI).lnk"
-:: WorkingDirectory olarak \proxychains\ klasörünü veriyoruz ki proxychains.conf dosyasını bulabilsin
+:: WorkingDirectory olarak \proxychains\ klasÃ¶rÃ¼nÃ¼ veriyoruz ki proxychains.conf dosyasÃ½nÃ½ bulabilsin
 set "WK_DIR=%~dp0proxychains"
 
 powershell -ExecutionPolicy Bypass -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%SC_PATH%'); $s.TargetPath = '%VBS_PATH%'; $s.WorkingDirectory = '%WK_DIR%'; $s.IconLocation = '%LOCALAPPDATA%\Discord\app.ico'; $s.Save()"
 
-echo [+] Masaüstü kısayolu oluşturuldu.
+echo [+] MasaÃ¼stÃ¼ kÃ½sayolu oluÃ¾turuldu.
 
 :: --- STARTUP KONTROL ---
 echo.
-set /p "ans=[3] Sistem açılışına (Startup) eklemek ister misiniz? (E/H): "
+set /p "ans=[3] Sistem aÃ§Ã½lÃ½Ã¾Ã½na (Startup) eklemek ister misiniz? (E/H): "
 if /i "%ans%" neq "E" goto BITIS
 
-:: Kopyalama işlemini parantez içinden çıkarıp değişkene atıyoruz
+:: Kopyalama iÃ¾lemini parantez iÃ§inden Ã§Ã½karÃ½p deÃ°iÃ¾kene atÃ½yoruz
 set "SRC_LNK=%USERPROFILE%\Desktop\Discord (DPI).lnk"
 set "DST_LNK=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Discord (DPI).lnk"
 
@@ -225,11 +225,11 @@ set "DST_LNK=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Discord (DP
 copy /y "%SRC_LNK%" "%DST_LNK%" >nul 2>&1
 
 if %errorlevel% equ 0 (
-    echo [+] Başlangıca eklendi.
+    echo [+] BaÃ¾langÃ½ca eklendi.
 ) else (
-    echo [-] HATA: Kısayol kopyalanamadı!
+    echo [-] HATA: KÃ½sayol kopyalanamadÃ½!
 )
 :BITIS
 echo.
-echo İŞLEM TAMAMLANDI.
+echo ÃÃLEM TAMAMLANDI.
 pause
