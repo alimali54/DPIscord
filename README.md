@@ -26,7 +26,7 @@ DPIscord, Discord üzerindeki erişim engellerini ve bağlantı sorunlarını ot
 Bu bölüm, DPIscord'un çalışma mantığını merak eden teknik kullanıcılar içindir:
 
 * **Servis ve Süreç Denetimi:** Sistemde `goodbyedpi.exe` sürecini ve `GoodbyeDPI` servisini sorgular. Eğer aktifse, ağ sürücüsü (`WinDivert`) ile birlikte sistemden tamamen arındırmak için geçici yönetici hakları talep eder.
-* **DoH Destekli DNS Analizi:** Standart `nslookup` sonuçlarını, Cloudflare DoH (DNS over HTTPS) üzerinden alınan gerçek IP adresleri ile karşılaştırır. IPv6 parazitlerinden arındırılmış bir IPv4 filtreleme mekanizması kullanır. DNS zehirlenmesi (spoofing) tespit edilirse, güvenli bir DNS yapılandırmasına geçilene kadar işleme devam etmez.
-* **Strateji Optimizasyonu:** `strategies.txt` içerisindeki ByeDPI parametrelerini tek tek simüle eder. Her denemede `curl` aracılığıyla tünel stabilitesini ölçer ve çalışan ilk değerini (`BEST_STRAT`) hafızaya alır.
+* **DoH Destekli DNS Analizi:** Standart `nslookup` sonuçlarını, Cloudflare DoH (DNS over HTTPS) üzerinden alınan gerçek IP adresleri ile karşılaştırır. DNS zehirlenmesi (spoofing) tespit edilirse, güvenli bir DNS yapılandırmasına geçilene kadar işleme devam etmez.
+* **Strateji Optimizasyonu:** `strategies.txt` içerisindeki ByeDPI parametrelerini tek tek deneyerek uygun olan stratejiyi bulur.
 * **VBS ve Proxychains Entegrasyonu:** Belirlenen strateji, dinamik olarak oluşturulan bir VBS scriptine gömülür. Bu script, Discord'u doğrudan başlatmak yerine `proxychains_win32_x64.exe` aracılığıyla sarmalayarak tüm Discord trafiğini ByeDPI tüneline zorla (force) yönlendirir.
 * **Dinamik EXE Takibi:** Oluşturulan başlatıcı, Discord'un versiyon güncellemelerinden etkilenmemek için kullanıcı dizinlerindeki `Discord.exe` konumunu her açılışta özyinelemeli (recursive) olarak tarar.
