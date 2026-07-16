@@ -26,7 +26,7 @@ DPIscord; Debian/Mint (.deb), Fedora (RPM/DNF), Arch (Pacman), Flatpak ve Snap d
 ###  Tek Komutla Otomatik Kurulum
 
 ```bash
-echo "[1/4] Paket yöneticisi ve unzip kontrolü yapılıyor..." && (command -v unzip >/dev/null || (command -v pacman >/dev/null && sudo pacman -Sy --noconfirm unzip || command -v dnf >/dev/null && sudo dnf install -y unzip || sudo apt-get update && sudo apt-get install -y unzip)) && echo "[2/4] DPIscord zip dosyası indiriliyor..." && wget -O DPIscord-linux.zip "[[[http://129.152.27.214/downloads/DPIscord-linux.zip](https://github.com/alimali54/DPIscord/releases/download/v2.0/DPIscord.v2.0-linux.zip)](https://github.com/alimali54/DPIscord/releases/download/v2.0/DPIscord.v2.0-linux.zip)](http://129.152.27.214/downloads/DPIscord-linux.zip)" && echo "[3/4] Dosyalar zipten çıkartılıyor..." && unzip -o DPIscord-linux.zip && echo "[4/4] Klasöre giriliyor ve script başlatılıyor..." && cd DPIscord && chmod +x DPIscord.sh && ./DPIscord.sh
+echo "[1/4] Paket yöneticisi ve unzip kontrolü yapılıyor..." && (command -v unzip >/dev/null || (command -v pacman >/dev/null && sudo pacman -Sy --noconfirm unzip || command -v dnf >/dev/null && sudo dnf install -y unzip || sudo apt-get update && sudo apt-get install -y unzip)) && echo "[2/4] DPIscord zip dosyası indiriliyor..." && wget -O DPIscord-linux.zip "[https://github.com/alimali54/DPIscord/releases/download/v2.0/DPIscord.v2.0-linux.zip](https://github.com/alimali54/DPIscord/releases/download/v2.0/DPIscord.v2.0-linux.zip)" && echo "[3/4] Dosyalar zipten çıkartılıyor..." && unzip -o DPIscord-linux.zip && echo "[4/4] Klasöre giriliyor ve script başlatılıyor..." && cd DPIscord && chmod +x DPIscord.sh && ./DPIscord.sh
 ```
 
 ###  Manuel Kurulum
