@@ -1,4 +1,4 @@
-# DPIscord v2.0
+# DPIscord v2.0 (Windows & Linux)
 
 DPIscord, Discord üzerindeki erişim engellerini sistem ayarlarınızı bozmadan çözen yenilikçi bir yardımcı araçtır.
 
@@ -11,7 +11,7 @@ DPIscord, Discord üzerindeki erişim engellerini sistem ayarlarınızı bozmada
 
 ---
 
-## Nasıl Kullanılır?
+## Nasıl Kullanılır? (Windows)
 
 1. **DPIscord.bat** dosyasını çalıştırın.
 2. Ekranda bir uyarı çıkarsa (GoodbyeDPI ve WinDivert temizliği için) onay verin.
@@ -20,10 +20,29 @@ DPIscord, Discord üzerindeki erişim engellerini sistem ayarlarınızı bozmada
 
 > **ÖNEMLİ:** Masaüstündeki kısayol oluştuktan sonra, DPIscord klasörünün veya içerisindeki dosyaların yerini değiştirmeyin.
 
+## Nasıl Kullanılır? (Linux)
+DPIscord; Debian/Mint (.deb), Fedora (RPM/DNF), Arch (Pacman), Flatpak ve Snap dahil olmak üzere tüm Linux dağıtımlarında sorunsuz çalışır.
+
+1. Terminali açın ve `DPIscord` klasörünün içine gidin.
+2. Kurulum betiğine çalıştırma izni verin:
+   ```bash
+   chmod +x DPIscord.sh
+3. Kurulumu başlatın:
+   ```bash
+   ./DPIscord.sh
+
+---
+
+#### ⚠️ Handoff süreci notu:
+Eğer Discord'u ilk defa açacaksanız veya yeni giriş yapacaksanız:
+* **Windows sistemlerde:** Eğer tarayıcıda handoff süreci takılırsa, tarayıcınızın proxy ayarlarını geçici olarak `HTTP Proxy: 127.0.0.1` | `Port: 8849` yapın. Giriş tamamlandıktan sonra kapatabilirsiniz.
+* **Geleneksel Kurulumlarda (.deb, .rpm, pacman):** Giriş yapmadan önce tüm tarayıcı pencerelerinizi tamamen kapatın. Discord handoff süreci için tarayıcınızı açtığında DPI tüneli tarayıcıya da aktarılır ve handoff sürecini sorunsuz geçersiniz.
+* **Flatpak Kurulumlarında:** Sandbox izolasyonu nedeniyle tünel tarayıcıya otomatik aktarılamaz. Eğer tarayıcıda handoff süreci takılırsa, tarayıcınızın proxy ayarlarını geçici olarak `HTTP Proxy: 127.0.0.1` | `Port: 8849` yapın. Giriş tamamlandıktan sonra kapatabilirsiniz.
+
 ---
 
 ## Çalışma Mantığı (Teknik Şema)
-
+### Windows Altyapısı
 ```text
 [Discord.exe]
       │
@@ -35,4 +54,20 @@ DPIscord, Discord üzerindeki erişim engellerini sistem ayarlarınızı bozmada
 [ByeDPI (ciadpi)] (127.0.0.1:8848 - Belirlenen bypass stratejisiyle)
       │
       ▼  (Sansürsüz ve engelsiz)
+[Discord Sunucuları]
+```
+
+### Linux Altyapısı
+```text
+[discord-dpi.desktop Kısayolu]
+      │
+      ▼ (Dinamik Başlatıcı: dpiscord_run.sh)
+      │
+      ├─► [Çevre Değişkeni: export https_proxy=[http://127.0.0.1:8849](http://127.0.0.1:8849)] (İnatçı Rust updater'ı ve Handoff tarayıcısını kurtarır)
+      ├─► [Gost - [http://127.0.0.1:8849](http://127.0.0.1:8849)] (Gelen HTTP proxy isteklerini TLS DNS ile çözüp ByeDPI'a iletir)
+      │
+      ▼ (Güvenli DNS ile çözülen trafik buraya tünellenir)
+[ByeDPI (ciadpi)] (127.0.0.1:8848 - Belirlenen bypass stratejisiyle)
+      │
+      ▼ (Sansürsüz ve engelsiz)
 [Discord Sunucuları]
