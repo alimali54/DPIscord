@@ -14,7 +14,7 @@ fi
 
 # --- İNDİRME VE ZIP AÇMA ---
 echo "[2/4] DPIscord zip dosyası indiriliyor..."
-wget -O DPIscord-linux.zip "https://github.com/alimali54/DPIscord/releases/download/v2.0/DPIscord.v2.0-linux.zip"
+wget -O DPIscord-linux.zip "https://github.com/alimali54/DPIscord/releases/download/v2.0s/DPIscord.v2.0s-linux.zip"
 
 echo "[3/4] Dosyalar zipten çıkartılıyor..."
 unzip -o DPIscord-linux.zip
