@@ -63,7 +63,7 @@ Eğer Discord'u ilk defa açacaksanız veya yeni giriş yapacaksanız:
       │
       ▼ (Dinamik Başlatıcı: dpiscord_run.sh)
       │
-      ├─► [Çevre Değişkeni: export https_proxy=[http://127.0.0.1:8849](http://127.0.0.1:8849)] (İnatçı Rust updater'ı ve Handoff tarayıcısını kurtarır)
+      ├─► [Çevre Değişkeni: export https_proxy=[http://127.0.0.1:8849](http://127.0.0.1:8849)]
       ├─► [Gost - [http://127.0.0.1:8849](http://127.0.0.1:8849)] (Gelen HTTP proxy isteklerini TLS DNS ile çözüp ByeDPI'a iletir)
       │
       ▼ (Güvenli DNS ile çözülen trafik buraya tünellenir)
