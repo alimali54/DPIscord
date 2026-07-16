@@ -1,3 +1,29 @@
+> [!WARNING]
+> ## REDDIT'TEN GELENLERİN DİKKATİNE
+> 
+> Öncelikle insan banlamadan önce anlayıp dinlemeniz gerekir. Biraz eski paylaşımlarıma baksanız hakkımda az çok fikriniz oluşurdu.
+> 
+> **ByeDPI**'ın Türkiye'de sadece Android'de var olduğu zannedilirken, tanıtımını ve nasıl kullanıldığını YouTube'da Windows, Linux ve macOS için **ilk ben anlattım**. Açın bakın, benim videolarımdan önce kullanıldığını bulabilecek misiniz? `-r 1+s` parametresi bile benden çıktı; öncesini araştırın, bulamazsınız. Çok matah bir şey yapmış gibi söylemiyorum, sadece durumu belirtiyorum.
+> 
+> Sonrasında bu konulara ilgim arttı. ByeDPI Linux üzerinde sistem geneli yapılamıyordu; bunun yöntemini az araştırmadım ve yine **ilk ben paylaştım**. Hatta buradaki *byedpi-Turkey* paylaşımı da benim videomdan ilhamla ortaya çıktı. 
+> 
+> Aynı şekilde **B4**'ü de kimse bilmezken yine ilk ben gösterdim.
+> 
+> İlgi alanımı az çok anlamışsınızdır. Ben de bu doğrultuda ufak tefek, işi kolaylaştıran programlar yapayım dedim. Daha önce yapmıştım ama o sürümde sistemde DNS değiştirmek gerekiyordu.
+> 
+> ### Gelelim işin patladığı yere: `gost`
+> DNS zorunluluğunu `gost` ile kaldırabildiğimi fark ettiğimde büyük bir heyecanla bunu paylaşmak istedim. Sadece Windows için olan programımı Linux için de port ettim. Yapay zeka yardımı almış olsam bile, sisteme "al sıfırdan yap" demedim; çalışma mantığına ve mimarisine tamamen ben hakimim.
+> 
+> **gost** büyük bir proje ve GitHub'da 18 bin yıldızı var. Bilen bilir ama bilmeyenler işte böyle VirusTotal sonuçlarına bakarak insanı kolayca töhmet altında bırakabiliyor.
+> 
+> **O gördüğünüz uyarıların tamamı `gost` kullanımından kaynaklanmaktadır.** Durum buyken, burada çıkıp benim programımı hedef göstererek *"Bu virüslü, uzak durun"* demek hiç yakışmıyor.
+> 
+> Artık projede `gost` yerine **sing-box** kullanıyorum ve aynı etkiyi bu şekilde elde ediyorum. Yoksa bu asılsız iddialar başımı çok ağrıtacaktı.
+> 
+> **Sizden bir özür ve bu haksız ithamlar için düzeltme bekliyorum.**
+
+
+
 # DPIscord v2.0 (Windows & Linux)
 
 DPIscord, Discord üzerindeki erişim engellerini sistem ayarlarınızı bozmadan çözen yenilikçi bir yardımcı araçtır.
