@@ -55,7 +55,7 @@ Eğer Discord'u ilk defa açacaksanız veya yeni giriş yapacaksanız:
       │
       ▼  (version.dll ile Discord trafiği [gost/sing-box - socks5://127.0.0.1:8849] adresine yönlendirilir)
       │
-      ├─► [Gost - socks5://127.0.0.1:8849] (Tüm alan adlarını 1.1.1.1:853 şifreli DoT ile çözer ve ByeDPI'a [ciadpi - socks5://127.0.0.1:8848] iletir)
+      ├─► [Gost/Sing-box- socks5://127.0.0.1:8849] (Tüm alan adlarını şifreli DoT ile çözer ve ByeDPI'a [ciadpi - socks5://127.0.0.1:8848] iletir)
       │
       ▼  (Güvenli DNS ile çözülen trafik buraya tünellenir)
 [ByeDPI (ciadpi)] (127.0.0.1:8848 - Belirlenen bypass stratejisiyle)
