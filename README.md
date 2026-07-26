@@ -78,7 +78,7 @@ Eğer Discord'u ilk defa açacaksanız veya yeni giriş yapacaksanız:
       │
       ▼ (Sansürsüz ve engelsiz)
 [Discord Sunucuları]
-
+```
 
 ## Kullanılan Kaynaklar ve Teşekkür (Credits)
 
