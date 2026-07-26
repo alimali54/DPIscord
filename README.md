@@ -78,3 +78,22 @@ Eğer Discord'u ilk defa açacaksanız veya yeni giriş yapacaksanız:
       │
       ▼ (Sansürsüz ve engelsiz)
 [Discord Sunucuları]
+
+
+## Kullanılan Kaynaklar ve Teşekkür (Credits)
+
+Bu projede, bağlantı sorunlarını çözmek ve tünelleme işlemlerini gerçekleştirmek için açık kaynaklı harika projelerden faydalanılmıştır. Projede kullanılan çalıştırılabilir (`.exe` ve binary) dosyalar aşağıda listelenmiştir. 
+
+Dilerseniz mevcut dosyaları olduğu gibi kullanabilir, dilerseniz aşağıdaki resmi bağlantılardan bu projeleri inceleyerek kendi sürümlerinizi derleyebilir veya indirebilirsiniz:
+
+* **ciadpi (ByeDPI):** DPI bypass işlemleri için.  
+  [GitHub - hufrea/byedpi](https://github.com/hufrea/byedpi)
+
+* **sing-box:** ciadpi'ın açtığı tünele DNS ekleyip kendi tünelini oluşturur. 
+  [GitHub - sagernet/sing-box](https://github.com/sagernet/sing-box)
+
+* **curl:** Ağ ve bağlantı testlerinin gerçekleştirilmesi için kullanılır.  
+  [GitHub - curl/curl](https://github.com/curl/curl)
+
+* **version.dll (Discord Proxy):** Discord uygulamasının yerel olarak proxy tüneline yönlendirilmesini sağlar.  
+  [GitHub - aiqinxuancai/discord-proxy](https://github.com/aiqinxuancai/discord-proxy/)
