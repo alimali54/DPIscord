@@ -2,6 +2,8 @@
 
 DPIscord, Discord üzerindeki erişim engellerini sistem ayarlarınızı bozmadan çözen yenilikçi bir yardımcı araçtır.
 
+Ayrıca Linux sürümünün **Sober (Roblox)** desteği de vardır. 
+
 ## Ne Yapar?
 
 * **En Uygun Stratejiyi Seçer:** İnternet hattınızda sansürü aşacak en kararlı ByeDPI ayarını (`ciadpi`) tespit eder.
