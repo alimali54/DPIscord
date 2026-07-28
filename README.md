@@ -95,5 +95,5 @@ Dilerseniz mevcut dosyaları olduğu gibi kullanabilir, dilerseniz aşağıdaki 
 * **curl:** Ağ ve bağlantı testlerinin gerçekleştirilmesi için kullanılır.  
   [GitHub - curl/curl](https://github.com/curl/curl)
 
-* **version.dll (Discord Proxy):** Discord uygulamasının yerel olarak proxy tüneline yönlendirilmesini sağlar.  
-  [GitHub - aiqinxuancai/discord-proxy](https://github.com/aiqinxuancai/discord-proxy/)
+* **version.dll (discord-drover):** Discord uygulamasının yerel olarak proxy tüneline yönlendirilmesini sağlar.  
+  [GitHub - hdrover/discord-drover](https://github.com/hdrover/discord-drover)
