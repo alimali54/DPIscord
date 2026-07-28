@@ -1,0 +1,55 @@
+{
+  "log": {
+    "level": "debug"
+  },
+
+  "dns": {
+    "servers": [
+      {
+        "type": "tls",
+        "tag": "dns-remote",
+        "server": "1.1.1.1",
+        "server_port": 853,
+        "detour": "proxy"
+      }
+    ],
+    "rules": [
+      {
+        "server": "dns-remote"
+      }
+    ]
+  },
+
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 8849
+    }
+  ],
+
+  "outbounds": [
+    {
+      "type": "socks",
+      "tag": "proxy",
+      "server": "127.0.0.1",
+      "server_port": 8848
+    }
+  ],
+
+  "route": {
+    "final": "proxy",
+    "rules": [
+      {
+        "inbound": "mixed-in",
+        "action": "sniff"
+      },
+      {
+        "inbound": "mixed-in",
+        "action": "resolve",
+        "server": "dns-remote"
+      }
+    ]
+  }
+}
