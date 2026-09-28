@@ -1,4 +1,4 @@
-# DPIscord (Windows & Linux)
+# DPIscord (Windows & Linux & MacOS)
 
 DPIscord, Discord üzerindeki erişim engellerini sistem ayarlarınızı bozmadan çözen yenilikçi bir yardımcı araçtır.
 
