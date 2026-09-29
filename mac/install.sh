@@ -18,7 +18,7 @@ if [ "$ARCH" = "arm64" ]; then
     RELEASE_FILE="DPIscord.${VERSION}-mac-arm64.zip"
 else
     echo "  [+] Intel (x86_64) mimarisi tespit edildi."
-    RELEASE_FILE="DPIscord.${VERSION}-mac-x86_64.zip"
+    RELEASE_FILE="DPIscord.${VERSION}-mac-amd4.zip"
 fi
 
 DOWNLOAD_URL="https://github.com/alimali54/DPIscord/releases/download/${VERSION}/${RELEASE_FILE}"
