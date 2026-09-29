@@ -55,6 +55,7 @@ TARGET_DIR="$(dirname "$TARGET_SCRIPT")"
 cd "$TARGET_DIR" || exit 1
 
 chmod +x DPIscord.sh 2>/dev/null
+chmod +x uninstall.sh 2>/dev/null
 xattr -cr . 2>/dev/null
 
 ./DPIscord.sh
