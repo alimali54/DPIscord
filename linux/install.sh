@@ -21,7 +21,7 @@ unzip -o DPIscord-linux.zip
 
 # --- KURULUMU TETİKLEME ---
 echo "[4/4] Klasöre giriliyor ve script başlatılıyor..."
-DPIscord.v2.4-linux || exit 1
+cd DPIscord.v2.4-linux || exit 1
 cd DPIscord || exit 1
 chmod +x DPIscord.sh
 ./DPIscord.sh
