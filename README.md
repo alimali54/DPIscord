@@ -40,6 +40,43 @@ bash <(curl -sSL https://raw.githubusercontent.com/alimali54/DPIscord/main/linux
    ```bash
    ./DPIscord.sh
 
+## Nasıl Kullanılır? (MacOS)
+
+###  Tek Komutla Otomatik Kurulum
+
+```bash
+bash <(curl -sSL https://raw.githubusercontent.com/alimali54/DPIscord/main/mac/install.sh)
+```
+
+### Kaldırma Adımları
+### Süreçleri durdurup kısayolları ve başlangıç öğesini kaldırmak için:
+```bash
+bash ~/DPIscord/uninstall.sh
+```
+
+### DPIscord klasörünü kaldırmak için
+```bash
+rm -rf ~/DPIscord
+```
+
+###  Manuel Kurulum
+1. Terminali açın ve `DPIscord` klasörünün içine gidin.
+2. Kurulum betiğine çalıştırma izni verin:
+   ```bash
+   chmod +x DPIscord.sh
+3. Kurulumu başlatın:
+   ```bash
+   ./DPIscord.sh
+
+### Manuel Kaldırma
+1. Terminali açın ve `DPIscord` klasörünün içine gidin.
+2. Kaldırma betiğine çalıştırma izni verin:
+   ```bash
+   chmod +x uninstall.sh
+3. Kurulumu başlatın:
+   ```bash
+   ./uninstall.sh
+4. Klasörü silin
 ---
 
 #### ⚠️ Handoff süreci notu:
