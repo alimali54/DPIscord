@@ -18,10 +18,19 @@ wget -O DPIscord-linux.zip "https://github.com/alimali54/DPIscord/releases/downl
 
 echo "[3/4] Dosyalar zipten çıkartılıyor..."
 unzip -o DPIscord-linux.zip
+rm -f DPIscord-linux.zip
 
 # --- KURULUMU TETİKLEME ---
 echo "[4/4] Klasöre giriliyor ve script başlatılıyor..."
-cd DPIscord.v2.4-linux || exit 1
-cd DPIscord || exit 1
-chmod +x DPIscord.sh
+
+# DPIscord.sh dosyasını nerede olursa olsun bulup o dizine geçer
+TARGET_SCRIPT=$(find . -name "DPIscord.sh" | head -n 1)
+
+if [ -z "$TARGET_SCRIPT" ]; then
+    echo "HATA: DPIscord.sh bulunamadı!"
+    exit 1
+fi
+
+cd "$(dirname "$TARGET_SCRIPT")" || exit 1
+chmod +x DPIscord.sh uninstall.sh 2>/dev/null
 ./DPIscord.sh
