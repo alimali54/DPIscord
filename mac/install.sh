@@ -42,11 +42,17 @@ rm -f "$RELEASE_FILE"
 
 # --- 4. İZİNLER VE BAŞLATMA ---
 echo "[4/4] İzinler yapılandırılıyor ve kurulum başlatılıyor..."
-cd "$INSTALL_DIR" || exit 1
 
-if [ -d "DPIscord" ]; then
-    cd DPIscord || exit 1
+# DPIscord.sh dosyasının çıkartıldığı gerçek dizini bul
+TARGET_SCRIPT=$(find "$INSTALL_DIR" -name "DPIscord.sh" | head -n 1)
+
+if [ -z "$TARGET_SCRIPT" ]; then
+    echo "[-] HATA: Çıkartılan dosyalar arasında DPIscord.sh bulunamadı!"
+    exit 1
 fi
+
+TARGET_DIR="$(dirname "$TARGET_SCRIPT")"
+cd "$TARGET_DIR" || exit 1
 
 chmod +x DPIscord.sh 2>/dev/null
 xattr -cr . 2>/dev/null
