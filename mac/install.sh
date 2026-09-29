@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # DPIscord macOS Otomatik Kurulum Betiği
-# Tek satır kurulum: bash <(curl -sSL https://raw.githubusercontent.com/alimali54/DPIscord/main/mac/install.sh)
+# Tek satır kurulum: bash <(curl -sSL https://raw.githubusercontent.com/alimali54/DPIscord/main/mac/install.sh | tr -d '\r')
 
 echo "=============================================="
 echo "          DPIscord macOS Installer            "
@@ -44,7 +44,6 @@ rm -f "$RELEASE_FILE"
 echo "[4/4] İzinler yapılandırılıyor ve kurulum başlatılıyor..."
 cd "$INSTALL_DIR" || exit 1
 
-# Alt klasör varsa içine gir
 if [ -d "DPIscord" ]; then
     cd DPIscord || exit 1
 fi
