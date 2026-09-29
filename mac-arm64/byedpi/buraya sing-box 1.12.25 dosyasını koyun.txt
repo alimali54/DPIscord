@@ -1,3 +1,0 @@
-25 MB'dan büyük olduğu için ben koyamadım. İsteyen aşağıdan indirip koysun.
-
-https://github.com/SagerNet/sing-box/releases/download/v1.12.25/sing-box-1.12.25-darwin-arm64.tar.gz
