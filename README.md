@@ -51,15 +51,6 @@ rm -rf "$HOME"/*DPIscord*
    ```bash
    ./DPIscord.sh
 
-###  Manuel Kurulum
-1. Terminali açın ve `DPIscord` klasörünün içine gidin.
-2. Kurulum betiğine çalıştırma izni verin:
-   ```bash
-   chmod +x DPIscord.sh
-3. Kurulumu başlatın:
-   ```bash
-   ./DPIscord.sh
-
 ## Nasıl Kullanılır? (MacOS)
 
 ###  Tek Komutla Otomatik Kurulum
