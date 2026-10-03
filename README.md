@@ -31,6 +31,26 @@ DPIscord; Debian/Mint (.deb), Fedora (RPM/DNF), Arch (Pacman), Flatpak ve Snap d
 bash <(curl -sSL https://raw.githubusercontent.com/alimali54/DPIscord/main/linux/install.sh)
 ```
 
+### Kaldırma Adımları
+### Süreçleri durdurup kısayolları ve başlangıç öğesini kaldırmak için:
+```bash
+bash "$(find "$HOME" -type f -iname "uninstall.sh" 2>/dev/null | grep -i "DPIscord" | head -n 1)"
+```
+
+### DPIscord klasörünü kaldırmak için
+```bash
+rm -rf "$HOME"/*DPIscord*
+```
+
+###  Manuel Kurulum
+1. Terminali açın ve `DPIscord` klasörünün içine gidin.
+2. Kurulum betiğine çalıştırma izni verin:
+   ```bash
+   chmod +x DPIscord.sh
+3. Kurulumu başlatın:
+   ```bash
+   ./DPIscord.sh
+
 ###  Manuel Kurulum
 1. Terminali açın ve `DPIscord` klasörünün içine gidin.
 2. Kurulum betiğine çalıştırma izni verin:
