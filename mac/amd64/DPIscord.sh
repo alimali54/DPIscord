@@ -22,7 +22,7 @@ PORT=8848
 SING_PORT=8849
 
 echo "=============================================="
-echo "           DPIscord macOS v2.4                "
+echo "           DPIscord macOS v2.5                "
 echo "=============================================="
 
 # --- DISCORD YÜKLÜ MÜ KONTROLÜ ---
@@ -111,11 +111,11 @@ pkill -9 -f "sing-box" >/dev/null 2>&1
 killall -9 Discord >/dev/null 2>&1
 sleep 0.5
 export HTTPS_PROXY="http://127.0.0.1:$SING_PORT"
-"$CIADPI_BIN" $STRAT -p $PORT >/dev/null 2>&1 &
+nohup "$CIADPI_BIN" $STRAT -p $PORT >/dev/null 2>&1 & disown
 sleep 0.1
-"$SINGBOX_BIN" run -c "$SINGBOX_CONFIG" >/dev/null 2>&1 &
+nohup "$SINGBOX_BIN" run -c "$SINGBOX_CONFIG" >/dev/null 2>&1 & disown
 sleep 0.5
-"$DISCORD_EXEC" --proxy-server="http://127.0.0.1:$SING_PORT" >/dev/null 2>&1 &
+open -a Discord --args --proxy-server="http://127.0.0.1:$SING_PORT"
 EOF
         
         chmod +x "$LAUNCHER_PATH"
@@ -159,17 +159,19 @@ export HTTPS_PROXY="http://127.0.0.1:$SING_PORT"
 
 if ! ps aux | grep -F "$CIADPI_BIN $BEST_STRAT -p $PORT" | grep -v grep > /dev/null; then
     pkill -9 -f "ciadpi" >/dev/null 2>&1
-    "$CIADPI_BIN" $BEST_STRAT -p $PORT >/dev/null 2>&1 &
+    nohup "$CIADPI_BIN" $BEST_STRAT -p $PORT >/dev/null 2>&1 &
+    disown
     sleep 0.1
 fi
 
 if ! ps aux | grep -F "$SINGBOX_BIN run -c $SINGBOX_CONFIG" | grep -v grep > /dev/null; then
     pkill -9 -f "sing-box" >/dev/null 2>&1
-    "$SINGBOX_BIN" run -c "$SINGBOX_CONFIG" >/dev/null 2>&1 &
+    nohup "$SINGBOX_BIN" run -c "$SINGBOX_CONFIG" >/dev/null 2>&1 &
+    disown
     sleep 0.3
 fi
 
-"$DISCORD_EXEC" --proxy-server="http://127.0.0.1:$SING_PORT" >/dev/null 2>&1 &
+open -a Discord --args --proxy-server="http://127.0.0.1:$SING_PORT"
 EOF
 
 chmod +x "$LAUNCHER_PATH"
@@ -181,6 +183,10 @@ APP_NAME="Discord (DPI).app"
 
 echo "[+] macOS için Native Application (.app) üretiliyor..."
 osacompile -e "do shell script \"bash \\\"$LAUNCHER_PATH\\\" >/dev/null 2>&1 &\"" -o "$DESKTOP_DIR/$APP_NAME" >/dev/null 2>&1
+
+# Dock'ta asılı kalmasını önlemek için LSUIElement ekleniyor
+/usr/libexec/PlistBuddy -c "Add :LSUIElement bool true" "$DESKTOP_DIR/$APP_NAME/Contents/Info.plist" 2>/dev/null || \
+/usr/libexec/PlistBuddy -c "Set :LSUIElement bool true" "$DESKTOP_DIR/$APP_NAME/Contents/Info.plist" 2>/dev/null
 
 if [ -f "$DISCORD_APP/Contents/Resources/electron.icns" ]; then
     cp "$DISCORD_APP/Contents/Resources/electron.icns" "$DESKTOP_DIR/$APP_NAME/Contents/Resources/applet.icns"
