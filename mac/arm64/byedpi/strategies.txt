@@ -1,4 +1,6 @@
 -r 1+s
+-a2 -o1 -s4 -s6
+-d9+s -s25+s -t5 -At -q20+s -r1+h
 --proto udp --udp-fake 3 --auto none --proto tls,http --oob 4+hm --auto none
 -q1 -ea
 -s1 -At -d2 -f-1 -r1+s -An
