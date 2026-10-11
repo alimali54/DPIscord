@@ -11,14 +11,14 @@ echo ""
 # --- 1. MİMARİ TESPİTİ ---
 echo "[1/4] Sistem mimarisi tespit ediliyor..."
 ARCH="$(uname -m)"
-VERSION="v2.4"
+VERSION="v2.5"
 
 if [ "$ARCH" = "arm64" ]; then
     echo "  [+] Apple Silicon (M serisi) mimarisi tespit edildi."
-    RELEASE_FILE="DPIscord.${VERSION}-mac-arm64-fix.zip"
+    RELEASE_FILE="DPIscord.${VERSION}-mac-arm64.zip"
 else
     echo "  [+] Intel (x86_64) mimarisi tespit edildi."
-    RELEASE_FILE="DPIscord.${VERSION}-mac-amd64-fix.zip"
+    RELEASE_FILE="DPIscord.${VERSION}-mac-amd64.zip"
 fi
 
 DOWNLOAD_URL="https://github.com/alimali54/DPIscord/releases/download/${VERSION}/${RELEASE_FILE}"
