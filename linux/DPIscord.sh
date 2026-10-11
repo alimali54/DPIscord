@@ -3,6 +3,30 @@
 # DPIscord Linux Port (Discord & Sober Destekli, Akıllı Kısayollar)
 # Karakter kodlaması UTF-8 olarak varsayılır.
 
+# --- TERMİNAL KONTROLÜ (Çift Tıklama Düzeltmesi) ---
+# Script bir terminal (TTY) içinde çalışmıyorsa, kendini bir terminal ile yeniden başlatır.
+if [ ! -t 0 ]; then
+    if command -v x-terminal-emulator &>/dev/null; then
+        exec x-terminal-emulator -e bash "$0" "$@"
+    elif command -v gnome-terminal &>/dev/null; then
+        exec gnome-terminal -- bash "$0" "$@"
+    elif command -v konsole &>/dev/null; then
+        exec konsole -e bash "$0" "$@"
+    elif command -v xfce4-terminal &>/dev/null; then
+        exec xfce4-terminal -e bash "$0" "$@"
+    elif command -v mate-terminal &>/dev/null; then
+        exec mate-terminal -e bash "$0" "$@"
+    elif command -v lxterminal &>/dev/null; then
+        exec lxterminal -e bash "$0" "$@"
+    elif command -v xterm &>/dev/null; then
+        exec xterm -e bash "$0" "$@"
+    else
+        # Hiçbir terminal bulunamazsa hata kaydı bırakıp çık
+        echo "Terminal bulunamadı. Lütfen scripti terminal üzerinden çalıştırın." > "$HOME/dpiscord_error.log"
+        exit 1
+    fi
+fi
+
 # --- DİZİN VE YAPILANDIRMA ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DPI_SUBDIR="$SCRIPT_DIR/byedpi"
@@ -16,7 +40,7 @@ PORT=8848
 SING_PORT=8849
 
 echo "=============================================="
-echo "            DPIscord Linux v2.2               "
+echo "            DPIscord Linux v2.5               "
 echo "=============================================="
 
 # --- YÜKLÜ UYGULAMALARI KONTROL ET ---
