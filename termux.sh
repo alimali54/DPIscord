@@ -82,14 +82,14 @@ fi
 # Widget kısayolu oluştur
 echo "[4/4] Widget kısayolu oluşturuluyor..."
 
-cat > "$SHORTCUTS/byedpi" <<'EOF'
+cat > "$SHORTCUTS/ByeDPI" <<'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
 
 cd "$HOME/byedpi" || exit 1
 ./ciadpi $(cat selected.txt)
 EOF
 
-chmod +x "$SHORTCUTS/byedpi"
+chmod +x "$SHORTCUTS/ByeDPI"
 
 echo
 echo "================================"
