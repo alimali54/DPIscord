@@ -32,7 +32,7 @@ chmod +x ciadpi
 # Stratejileri indir
 echo "[2/4] Stratejiler indiriliyor..."
 
-if ! curl -fLsS "$STRATEGIES_URL" -o strategies.txt; then
+if ! curl -fLsS "${STRATEGIES_URL}?nocache=$(date +%s)" -o strategies.txt; then
     echo "HATA: Stratejiler indirilemedi."
     exit 1
 fi
