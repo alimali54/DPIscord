@@ -7,7 +7,7 @@ SHORTCUTS="$HOME/.shortcuts"
 CIADPI_URL="https://github.com/alimali54/DPIscord/raw/refs/heads/main/ciadpi"
 STRATEGIES_URL="https://raw.githubusercontent.com/alimali54/DPIscord/refs/heads/main/linux/byedpi/strategies.txt"
 
-TEST_URL="https://updates.discord.com"
+TEST_URL="https://roblox.com"
 DOH_URL="https://1.1.1.1/dns-query"
 PORT=8848
 
@@ -47,7 +47,7 @@ while IFS= read -r strategy || [ -n "$strategy" ]; do
 
     echo "Test ediliyor: $strategy"
 
-    ./ciadpi -p "$PORT" $strategy &
+    ./ciadpi -p "$PORT" $strategy >/dev/null 2>&1 &
     PID=$!
 
     sleep 2
