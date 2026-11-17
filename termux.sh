@@ -110,7 +110,7 @@ chmod +x "$SHORTCUTS/ByeDPI"
 # Terminal alias oluştur
 echo "[5/5] Terminal komutu oluşturuluyor..."
 
-ALIAS_LINE="alias byedpi='bash \"\$HOME/.shortcuts/ByeDPI\"'"
+ALIAS_LINE='alias byedpi='\''bash "$HOME/.shortcuts/ByeDPI"'\'''
 
 touch "$HOME/.bashrc"
 
@@ -118,7 +118,16 @@ if ! grep -Fqx "$ALIAS_LINE" "$HOME/.bashrc"; then
     echo "$ALIAS_LINE" >> "$HOME/.bashrc"
 fi
 
-# Alias'ı mevcut oturuma yükle
+# Bash açılışında .bashrc dosyasını yükle
+PROFILE="$HOME/.bash_profile"
+
+touch "$PROFILE"
+
+if ! grep -Fq 'source "$HOME/.bashrc"' "$PROFILE"; then
+    echo 'source "$HOME/.bashrc"' >> "$PROFILE"
+fi
+
+# Mevcut oturuma da yükle
 source "$HOME/.bashrc"
 
 echo
