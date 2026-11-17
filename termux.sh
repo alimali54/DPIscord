@@ -20,9 +20,9 @@ mkdir -p "$BASE" "$SHORTCUTS"
 cd "$BASE" || exit 1
 
 # ciadpi indir
-echo "[1/4] ciadpi indiriliyor..."
+echo "[1/5] ciadpi indiriliyor..."
 
-if ! curl -fLsS "$CIADPI_URL" -o ciadpi; then
+if ! curl -fLsS "${CIADPI_URL}?nocache=$(date +%s)" -o ciadpi; then
     echo "HATA: ciadpi indirilemedi."
     exit 1
 fi
@@ -30,7 +30,7 @@ fi
 chmod +x ciadpi
 
 # Stratejileri indir
-echo "[2/4] Stratejiler indiriliyor..."
+echo "[2/5] Stratejiler indiriliyor..."
 
 if ! curl -fLsS "${STRATEGIES_URL}?nocache=$(date +%s)" -o strategies.txt; then
     echo "HATA: Stratejiler indirilemedi."
@@ -38,7 +38,7 @@ if ! curl -fLsS "${STRATEGIES_URL}?nocache=$(date +%s)" -o strategies.txt; then
 fi
 
 # Stratejileri test et
-echo "[3/4] Uygun strateji aranıyor..."
+echo "[3/5] Uygun strateji aranıyor..."
 
 FOUND=0
 
@@ -80,21 +80,52 @@ if [ "$FOUND" -ne 1 ]; then
 fi
 
 # Widget kısayolu oluştur
-echo "[4/4] Widget kısayolu oluşturuluyor..."
+echo "[4/5] Widget kısayolu oluşturuluyor..."
 
 cat > "$SHORTCUTS/ByeDPI" <<'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
 
 cd "$HOME/byedpi" || exit 1
+
+# Önceki ciadpi süreçlerini sonlandır
+PIDS=$(pgrep -f '^\./ciadpi( |$)')
+
+if [ -n "$PIDS" ]; then
+    kill $PIDS 2>/dev/null
+    sleep 1
+
+    PIDS=$(pgrep -f '^\./ciadpi( |$)')
+
+    if [ -n "$PIDS" ]; then
+        kill -9 $PIDS 2>/dev/null
+    fi
+fi
+
+# Yeni ciadpi sürecini başlat
 ./ciadpi $(cat selected.txt)
 EOF
 
 chmod +x "$SHORTCUTS/ByeDPI"
+
+# Terminal alias oluştur
+echo "[5/5] Terminal komutu oluşturuluyor..."
+
+ALIAS_LINE="alias byedpi='bash \"\$HOME/.shortcuts/ByeDPI\"'"
+
+touch "$HOME/.bashrc"
+
+if ! grep -Fqx "$ALIAS_LINE" "$HOME/.bashrc"; then
+    echo "$ALIAS_LINE" >> "$HOME/.bashrc"
+fi
+
+# Alias'ı mevcut oturuma yükle
+source "$HOME/.bashrc"
 
 echo
 echo "================================"
 echo "       Kurulum tamamlandı!"
 echo "================================"
 echo "Seçilen strateji: $(cat selected.txt)"
-echo "Widget kısayolu: ByeDPI"
+echo "Widget: ByeDPI"
+echo "Terminal komutu: byedpi"
 echo "================================"
